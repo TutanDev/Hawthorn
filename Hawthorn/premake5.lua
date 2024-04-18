@@ -12,7 +12,8 @@ project "Hawthorn"
 	{
 		"src",
 
-		-- "vendor/spdlog/include",
+		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.GLFW}",
 		-- "vendor/tinyobjloader",
 
 		"%{IncludeDir.VulkanSDK}",
@@ -24,13 +25,12 @@ project "Hawthorn"
 		-- "%{IncludeDir.tinygltf}",
 
 		-- "%{IncludeDir.ImGui}",
-		-- "%{IncludeDir.GLFW}",
 		-- "%{IncludeDir.glm}",
 	}
 
 	links
 	{
-		--"GLFW",
+		"GLFW",
 		"%{Library.Vulkan}",
 		--"ImGui"
 	}

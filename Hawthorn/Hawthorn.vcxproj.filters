@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="core">
+      <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Hawthorn.h" />
+    <ClInclude Include="src\core\util\Logger.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\platform\EntryPoint.h" />
+    <ClInclude Include="src\core\platform\Context.h" />
+    <ClInclude Include="src\core\platform\Platform.h" />
+    <ClInclude Include="src\core\windowing\Window.h" />
+    <ClInclude Include="src\core\types\Optional.h" />
+    <ClInclude Include="src\core\platform\Application.h" />
+    <ClInclude Include="src\core\platform\Configuration.h" />
+    <ClInclude Include="src\core\platform\InputEvents.h" />
+    <ClInclude Include="src\platform\windows\WindowsPlatform.h" />
+    <ClInclude Include="src\platform\windows\WindowsContext.h" />
+    <ClInclude Include="src\core\windowing\GlfwWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\core\util\Logger.cpp" />
+    <ClCompile Include="src\core\platform\Configuration.cpp" />
+    <ClCompile Include="src\core\platform\InputEvents.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsPlatform.cpp" />
+    <ClCompile Include="src\core\platform\Platform.cpp" />
+    <ClCompile Include="src\core\platform\AppInfo.h" />
+    <ClCompile Include="src\core\platform\Application.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsEntryPoint.cpp" />
+    <ClCompile Include="src\core\windowing\Window.cpp" />
+    <ClCompile Include="src\platform\windows\WindowsContext.cpp" />
+    <ClCompile Include="src\core\windowing\GlfwWindow.cpp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,6 @@
+[submodule "Hawthorn/third_party/spdlog"]
+	path = Hawthorn/third_party/spdlog
+	url = git@github.com:TutanDev/spdlog.git
+[submodule "Hawthorn/third_party/GLFW"]
+	path = Hawthorn/third_party/GLFW
+	url = git@github.com:TutanDev/glfw.git

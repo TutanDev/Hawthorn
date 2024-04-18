@@ -12,11 +12,12 @@ project "HawthornApp"
 	{
 		"../Hawthorn/src",
 
-		--"../Hawthorn/vendor/spdlog/include",
 		--"../Hawthorn/vendor/tinyobjloader",
 
+		"%{IncludeDir.spdlog}",
+		"%{IncludeDir.GLFW}",
+
 		--"%{IncludeDir.ImGui}",
-		--"%{IncludeDir.GLFW}",
 		--"%{IncludeDir.glm}",
 
 		"%{IncludeDir.VulkanSDK}",
@@ -34,7 +35,7 @@ project "HawthornApp"
 	}
 
 	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("../bin-intermediates/" .. outputdir .. "/%{prj.name}")
+	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
 	filter "system:windows"
 		systemversion "latest"

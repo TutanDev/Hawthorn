@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HawthornApp", "HawthornApp\HawthornApp.vcxproj", "{D1670C7A-3D1D-856F-C611-7F4632C67B73}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{15A0C35D-0158-05AB-6A5F-DE065636A09B}"
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{8249BEE1-6EAC-4D86-1732-863C03741909}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hawthorn", "Hawthorn\Hawthorn.vcxproj", "{701A0C37-5CE7-6642-8500-55EA712C9CD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", "{376E56B9-2367-750B-4C99-5A9038F15417}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "Hawthorn\third_party\GLFW\GLFW.vcxproj", "{154B857C-0182-860D-AA6E-6C109684020F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,23 +18,24 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D1670C7A-3D1D-856F-C611-7F4632C67B73}.Debug|x64.ActiveCfg = Debug|x64
-		{D1670C7A-3D1D-856F-C611-7F4632C67B73}.Debug|x64.Build.0 = Debug|x64
-		{D1670C7A-3D1D-856F-C611-7F4632C67B73}.Dist|x64.ActiveCfg = Dist|x64
-		{D1670C7A-3D1D-856F-C611-7F4632C67B73}.Dist|x64.Build.0 = Dist|x64
-		{D1670C7A-3D1D-856F-C611-7F4632C67B73}.Release|x64.ActiveCfg = Release|x64
-		{D1670C7A-3D1D-856F-C611-7F4632C67B73}.Release|x64.Build.0 = Release|x64
 		{701A0C37-5CE7-6642-8500-55EA712C9CD0}.Debug|x64.ActiveCfg = Debug|x64
 		{701A0C37-5CE7-6642-8500-55EA712C9CD0}.Debug|x64.Build.0 = Debug|x64
 		{701A0C37-5CE7-6642-8500-55EA712C9CD0}.Dist|x64.ActiveCfg = Dist|x64
 		{701A0C37-5CE7-6642-8500-55EA712C9CD0}.Dist|x64.Build.0 = Dist|x64
 		{701A0C37-5CE7-6642-8500-55EA712C9CD0}.Release|x64.ActiveCfg = Release|x64
 		{701A0C37-5CE7-6642-8500-55EA712C9CD0}.Release|x64.Build.0 = Release|x64
+		{154B857C-0182-860D-AA6E-6C109684020F}.Debug|x64.ActiveCfg = Debug|x64
+		{154B857C-0182-860D-AA6E-6C109684020F}.Debug|x64.Build.0 = Debug|x64
+		{154B857C-0182-860D-AA6E-6C109684020F}.Dist|x64.ActiveCfg = Dist|x64
+		{154B857C-0182-860D-AA6E-6C109684020F}.Dist|x64.Build.0 = Dist|x64
+		{154B857C-0182-860D-AA6E-6C109684020F}.Release|x64.ActiveCfg = Release|x64
+		{154B857C-0182-860D-AA6E-6C109684020F}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{701A0C37-5CE7-6642-8500-55EA712C9CD0} = {15A0C35D-0158-05AB-6A5F-DE065636A09B}
+		{701A0C37-5CE7-6642-8500-55EA712C9CD0} = {8249BEE1-6EAC-4D86-1732-863C03741909}
+		{154B857C-0182-860D-AA6E-6C109684020F} = {376E56B9-2367-750B-4C99-5A9038F15417}
 	EndGlobalSection
 EndGlobal
