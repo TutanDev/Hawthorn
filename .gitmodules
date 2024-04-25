@@ -4,3 +4,6 @@
 [submodule "Hawthorn/third_party/GLFW"]
 	path = Hawthorn/third_party/GLFW
 	url = git@github.com:TutanDev/glfw.git
+[submodule "Hawthorn/third_party/imgui"]
+	path = Hawthorn/third_party/imgui
+	url = git@github.com:TutanDev/imgui.git
