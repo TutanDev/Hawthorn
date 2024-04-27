@@ -7,3 +7,6 @@
 [submodule "Hawthorn/third_party/imgui"]
 	path = Hawthorn/third_party/imgui
 	url = git@github.com:TutanDev/imgui.git
+[submodule "Hawthorn/third_party/glm"]
+	path = Hawthorn/third_party/glm
+	url = https://github.com/g-truc/glm.git
