@@ -14,11 +14,11 @@ project "HawthornApp"
 
 		--"../Hawthorn/vendor/tinyobjloader",
 
-		"%{IncludeDir.spdlog}",
-		"%{IncludeDir.GLFW}",
+		"../Hawthorn/third_party/spdlog/include",
+		"../Hawthorn/third_party/GLFW/include",
+		"../Hawthorn/third_party/imgui",
+		"../Hawthorn/third_party/glm",
 
-		--"%{IncludeDir.ImGui}",
-		--"%{IncludeDir.glm}",
 
 		"%{IncludeDir.VulkanSDK}",
 		--"%{IncludeDir.volk}",
@@ -36,6 +36,8 @@ project "HawthornApp"
 
 	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
+
+	defines { "GLM_FORCE_SWIZZLE", "GLM_FORCE_RADIANS", "GLM_FORCE_CTOR_INIT", "GLM_ENABLE_EXPERIMENTAL"}
 
 	filter "system:windows"
 		systemversion "latest"

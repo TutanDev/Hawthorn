@@ -4,36 +4,152 @@
     <Filter Include="core">
       <UniqueIdentifier>{4E40957C-3A77-960D-E363-7C10CF79120F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="core\app">
+      <UniqueIdentifier>{9E28D44A-8AF5-2E56-B30E-1DFE9F3A64E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\file_system">
+      <UniqueIdentifier>{211DC3BD-0D16-E20F-3648-C79422A0C11B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\gui">
+      <UniqueIdentifier>{C242D44A-AE0F-2F56-D728-1DFEC35464E4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\platform">
+      <UniqueIdentifier>{82509E77-EE10-1AAE-B74B-632B23CB5E8A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\types">
+      <UniqueIdentifier>{9296DD51-7E4E-1F9F-E755-F8FAD32CBA8F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\util">
+      <UniqueIdentifier>{7B4464A5-E7AE-181C-30ED-C9C19C96F670}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core\windowing">
+      <UniqueIdentifier>{B39E139A-9F6C-07A0-8800-78C6746DE304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="platform\windows">
+      <UniqueIdentifier>{A44FC440-9048-E392-B97A-C817A5D2C29E}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Hawthorn.h" />
-    <ClInclude Include="src\core\util\Logger.h">
-      <Filter>core</Filter>
+    <ClInclude Include="src\core\app\Application.h">
+      <Filter>core\app</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\platform\EntryPoint.h" />
-    <ClInclude Include="src\core\platform\Context.h" />
-    <ClInclude Include="src\core\platform\Platform.h" />
-    <ClInclude Include="src\core\windowing\Window.h" />
-    <ClInclude Include="src\core\types\Optional.h" />
-    <ClInclude Include="src\core\platform\Application.h" />
-    <ClInclude Include="src\core\platform\Configuration.h" />
-    <ClInclude Include="src\core\platform\InputEvents.h" />
-    <ClInclude Include="src\platform\windows\WindowsPlatform.h" />
-    <ClInclude Include="src\platform\windows\WindowsContext.h" />
-    <ClInclude Include="src\core\windowing\GlfwWindow.h" />
+    <ClInclude Include="src\core\app\DebugInfo.h">
+      <Filter>core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\app\VulkanApp.h">
+      <Filter>core\app</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\file_system\FileSystem.h">
+      <Filter>core\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\file_system\Legacy.h">
+      <Filter>core\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\file_system\stdFileSystem.h">
+      <Filter>core\file_system</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gui\Drawer.h">
+      <Filter>core\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\gui\GUI.h">
+      <Filter>core\gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\platform\Configuration.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\platform\EntryPoint.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\platform\InputEvents.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\platform\Platform.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\platform\PlatformContext.h">
+      <Filter>core\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\types\Optional.h">
+      <Filter>core\types</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\util\Helpers.h">
+      <Filter>core\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\util\Logger.h">
+      <Filter>core\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\util\Timer.h">
+      <Filter>core\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\util\glmCommon.h">
+      <Filter>core\util</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\windowing\GlfwWindow.h">
+      <Filter>core\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\windowing\Window.h">
+      <Filter>core\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="src\main.h" />
+    <ClInclude Include="src\platform\windows\WindowsContext.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\platform\windows\WindowsPlatform.h">
+      <Filter>platform\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\core\util\Logger.cpp" />
-    <ClCompile Include="src\core\platform\Configuration.cpp" />
-    <ClCompile Include="src\core\platform\InputEvents.cpp" />
-    <ClCompile Include="src\platform\windows\WindowsPlatform.cpp" />
-    <ClCompile Include="src\core\platform\Platform.cpp" />
-    <ClCompile Include="src\core\platform\AppInfo.h" />
-    <ClCompile Include="src\core\platform\Application.cpp" />
-    <ClCompile Include="src\platform\windows\WindowsEntryPoint.cpp" />
-    <ClCompile Include="src\core\windowing\Window.cpp" />
-    <ClCompile Include="src\platform\windows\WindowsContext.cpp" />
-    <ClCompile Include="src\core\windowing\GlfwWindow.cpp" />
+    <ClCompile Include="src\core\app\Application.cpp">
+      <Filter>core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\app\DebugInfo.cpp">
+      <Filter>core\app</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\file_system\FileSystem.cpp">
+      <Filter>core\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\file_system\Legacy.cpp">
+      <Filter>core\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\file_system\stdFileSystem.cpp">
+      <Filter>core\file_system</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\gui\Drawer.cpp">
+      <Filter>core\gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\platform\Configuration.cpp">
+      <Filter>core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\platform\InputEvents.cpp">
+      <Filter>core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\platform\Platform.cpp">
+      <Filter>core\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\util\Logger.cpp">
+      <Filter>core\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\util\Timer.cpp">
+      <Filter>core\util</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\windowing\GlfwWindow.cpp">
+      <Filter>core\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\windowing\Window.cpp">
+      <Filter>core\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\windows\WindowsContext.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\windows\WindowsEntryPoint.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\windows\WindowsPlatform.cpp">
+      <Filter>platform\windows</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

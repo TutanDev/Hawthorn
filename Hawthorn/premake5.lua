@@ -14,6 +14,8 @@ project "Hawthorn"
 
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}",
 		-- "vendor/tinyobjloader",
 
 		"%{IncludeDir.VulkanSDK}",
@@ -24,23 +26,24 @@ project "Hawthorn"
 		-- "%{IncludeDir.cli11}",
 		-- "%{IncludeDir.tinygltf}",
 
-		-- "%{IncludeDir.ImGui}",
-		-- "%{IncludeDir.glm}",
 	}
 
 	links
 	{
-		"GLFW",
 		"%{Library.Vulkan}",
-		--"ImGui"
+		"GLFW",
+		"ImGui"
 	}
 
 	targetdir ("../bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../bin-int/" .. outputdir .. "/%{prj.name}")
 
+
+	defines { "GLM_FORCE_SWIZZLE", "GLM_FORCE_RADIANS", "GLM_FORCE_CTOR_INIT", "GLM_ENABLE_EXPERIMENTAL"}
+
 	filter "system:windows"
 		systemversion "latest"
-		defines { "HT_PLATFORM_WINDOWS", "HT_BUILD_DLL", "_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS" }
+		defines { "HT_PLATFORM_WINDOWS", "_SILENCE_ALL_MS_EXT_DEPRECATION_WARNINGS" }
 
 	filter "configurations:Debug"
 		defines {"HT_DEBUG", "HT_ENABLE_ASSERTS"}

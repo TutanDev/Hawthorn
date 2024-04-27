@@ -56,21 +56,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Debug-windows-x86_64\HawthornApp\</OutDir>
-    <IntDir>..\bin-intermediates\Debug-windows-x86_64\HawthornApp\</IntDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\HawthornApp\</IntDir>
     <TargetName>HawthornApp</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Release-windows-x86_64\HawthornApp\</OutDir>
-    <IntDir>..\bin-intermediates\Release-windows-x86_64\HawthornApp\</IntDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\HawthornApp\</IntDir>
     <TargetName>HawthornApp</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Dist-windows-x86_64\HawthornApp\</OutDir>
-    <IntDir>..\bin-intermediates\Dist-windows-x86_64\HawthornApp\</IntDir>
+    <IntDir>..\bin-int\Dist-windows-x86_64\HawthornApp\</IntDir>
     <TargetName>HawthornApp</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
@@ -78,8 +78,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HT_PLATFORM_WINDOWS;HT_DEBUG;HT_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Hawthorn\src;third_party\spdlog\include;third_party\GLFW\include;C:\VulkanSDK\1.3.268.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLM_FORCE_SWIZZLE;GLM_FORCE_RADIANS;GLM_FORCE_CTOR_INIT;GLM_ENABLE_EXPERIMENTAL;HT_PLATFORM_WINDOWS;HT_DEBUG;HT_ENABLE_ASSERTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Hawthorn\src;..\Hawthorn\third_party\spdlog\include;..\Hawthorn\third_party\GLFW\include;..\Hawthorn\third_party\imgui;..\Hawthorn\third_party\glm;C:\VulkanSDK\1.3.268.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -87,7 +87,7 @@
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -95,8 +95,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HT_PLATFORM_WINDOWS;HT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Hawthorn\src;third_party\spdlog\include;third_party\GLFW\include;C:\VulkanSDK\1.3.268.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLM_FORCE_SWIZZLE;GLM_FORCE_RADIANS;GLM_FORCE_CTOR_INIT;GLM_ENABLE_EXPERIMENTAL;HT_PLATFORM_WINDOWS;HT_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Hawthorn\src;..\Hawthorn\third_party\spdlog\include;..\Hawthorn\third_party\GLFW\include;..\Hawthorn\third_party\imgui;..\Hawthorn\third_party\glm;C:\VulkanSDK\1.3.268.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -118,8 +118,8 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>HT_PLATFORM_WINDOWS;HT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\Hawthorn\src;third_party\spdlog\include;third_party\GLFW\include;C:\VulkanSDK\1.3.268.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>GLM_FORCE_SWIZZLE;GLM_FORCE_RADIANS;GLM_FORCE_CTOR_INIT;GLM_ENABLE_EXPERIMENTAL;HT_PLATFORM_WINDOWS;HT_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\Hawthorn\src;..\Hawthorn\third_party\spdlog\include;..\Hawthorn\third_party\GLFW\include;..\Hawthorn\third_party\imgui;..\Hawthorn\third_party\glm;C:\VulkanSDK\1.3.268.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -137,6 +137,9 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SandboxApp.h" />
+  </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\SandboxApp.cpp" />
   </ItemGroup>

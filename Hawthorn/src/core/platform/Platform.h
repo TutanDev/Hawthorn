@@ -5,14 +5,14 @@
 #include <string>
 #include <vector>
 
-#include "Context.h"
+#include "PlatformContext.h"
 
-#include "AppInfo.h"
+#include "core/app/Application.h"
+#include "core/util/Timer.h"
 //#include "common/optional.h"
 //#include "common/utils.h"
 //#include "common/vk_common.h"
-//#include "filesystem/legacy.h"
-#include "Application.h"
+
 //#include "platform/parser.h"
 //#include "platform/plugins/plugin.h"
 #include "core/windowing/Window.h"
@@ -26,6 +26,8 @@
 
 namespace HT
 {
+	extern void GetAppInfo(Platform& platform);
+
 	enum class ExitCode
 	{
 		Success = 0, /* App executed as expected */
@@ -106,11 +108,11 @@ namespace HT
 
 		void SetFocus(bool focused);
 
-		//void request_application(const apps::AppInfo* app);
+		void SetApplicationInfo(const AppCreateInfo* app);
 
-		//bool app_requested();
+		bool NeedsToLoadApp();
 
-		bool StartApp(const AppInfo* app);
+		bool StartApp();
 
 		//void force_simulation_fps(float fps);
 
@@ -158,18 +160,18 @@ namespace HT
 		bool               close_requested{ false };         /* Close requested */
 
 	private:
-		//Timer timer;
+		Timer timer;
 
-		//const apps::AppInfo* requested_app{ nullptr };
+		const AppCreateInfo* requested_app{ nullptr };
 
 		//std::vector<Plugin*> plugins;
 
 		std::vector<std::string> arguments;
 
-		// static so can be references from vkb::fs
+		// static so can be references from HT::FS
 		static std::string external_storage_directory;
 
-		// static so can be references from vkb::fs
+		// static so can be references from HT::FS
 		static std::string temp_directory;
 	};
 

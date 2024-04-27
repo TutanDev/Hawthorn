@@ -14,11 +14,10 @@ namespace HT
 	{
 		assert(options.window != nullptr && "Window must be valid");
 
-		//auto& _debug_info = get_debug_info();
-		//_debug_info.insert<ield::MinMax, float>("fps", fps);
-		//_debug_info.insert<field::MinMax, float>("frame_time", frame_time);
+		auto& _debug_info = GetDebugInfo();
+		_debug_info.Insert<Fields::MinMax, float>("fps", fps);
+		_debug_info.Insert<Fields::MinMax, float>("frame_time", frame_time);
 
-		//lock_simulation_speed = options.benchmark_enabled;
 		window = options.window;
 
 		return true;
@@ -37,10 +36,10 @@ namespace HT
 	{
 	}
 
-	//Drawer* Application::get_drawer()
-	//{
-	//	return nullptr;
-	//}
+	Drawer* Application::GetDrawer()
+	{
+		return nullptr;
+	}
 
 	void Application::Update(float delta_time)
 	{
@@ -48,9 +47,9 @@ namespace HT
 		frame_time = delta_time * 1000.0f;
 	}
 
-	//void Application::update_overlay(float delta_time, const std::function<void()>& additional_ui)
-	//{
-	//}
+	void Application::UpdateOverlay(float delta_time, const std::function<void()>& additional_ui)
+	{
+	}
 
 	const std::string& Application::GetName() const
 	{
@@ -62,10 +61,10 @@ namespace HT
 		name = name_;
 	}
 
-	//DebugInfo& Application::get_debug_info()
-	//{
-	//	return debug_info;
-	//}
+	DebugInfo& Application::GetDebugInfo()
+	{
+		return debug_info;
+	}
 
 	/*void Application::change_shader(const vkb::ShaderSourceLanguage& shader_language)
 	{

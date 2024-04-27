@@ -64,7 +64,7 @@ namespace HT
 		return args;
 	}
 
-	WindowsPlatformContext::WindowsPlatformContext(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow) : 		
+	WindowsPlatformContext::WindowsPlatformContext(/*HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow*/) :
 		PlatformContext{}
 	{
 		_external_storage_directory = "";
@@ -77,9 +77,10 @@ namespace HT
 			// No parent console, allocate a new one for this process
 			if (!AllocConsole())
 			{
-				throw std::runtime_error{ "AllocConsole error" };
+				//throw std::runtime_error{ "AllocConsole error" };
 			}
 		}
+
 		FILE* fp;
 		freopen_s(&fp, "conin$", "r", stdin);
 		freopen_s(&fp, "conout$", "w", stdout);

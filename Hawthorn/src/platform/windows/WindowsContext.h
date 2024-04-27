@@ -3,7 +3,7 @@
 #include <string>
 
 #include <Windows.h>
-#include <core/platform/Context.h>
+#include <core/platform/PlatformContext.h>
 
 namespace HT
 {
@@ -15,7 +15,7 @@ namespace HT
 	class WindowsPlatformContext final : public PlatformContext
 	{
 	public:
-		WindowsPlatformContext(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow);
+		WindowsPlatformContext(/*HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow*/);
 		~WindowsPlatformContext() override = default;
 	};
 }     

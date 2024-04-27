@@ -265,7 +265,7 @@ namespace HT
 		{
 			auto* monitor = glfwGetPrimaryMonitor();
 			const auto* mode = glfwGetVideoMode(monitor);
-			handle = glfwCreateWindow(mode->width, mode->height, properties.title.c_str(), monitor, NULL);
+			handle = glfwCreateWindow(mode->width, mode->height, /*"properties.title.c_str()*/"AAA", monitor, NULL);
 			break;
 		}
 

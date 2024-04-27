@@ -18,22 +18,45 @@
 #pragma once
 
 #include <string>
+#include <functional>
+#include <memory>
+#include <string>
+#include <unordered_map>
+#include <vector>
 
-//#include "debug_info.h"
-//#include "drawer.h"
-#include "Configuration.h"
-#include "InputEvents.h"
-//#include "timer.h"
+#include "DebugInfo.h"
+#include "core/gui/Drawer.h"
+#include "core/platform/Configuration.h"
+#include "core/platform/InputEvents.h"
+
+
+
 
 namespace HT
 {
 	class Window;
+	class Application;
+
+	using CreateFunc = std::function<std::unique_ptr<Application>()>;
+
+
+	class AppCreateInfo
+	{
+	public:
+		AppCreateInfo(const std::string& id, const CreateFunc& create) :
+			id(id), create(create)
+		{}
+
+		std::string id;
+		CreateFunc  create;
+	};
 
 	struct ApplicationOptions
 	{
 		bool    benchmark_enabled{ false };
 		Window* window{ nullptr };
 	};
+
 
 	class Application
 	{
@@ -58,8 +81,7 @@ namespace HT
 		 * @param delta_time The time taken since the last frame
 		 * @param additional_ui Function that implements an additional Gui
 		 */
-		//virtual void update_overlay(
-		//	float delta_time, const std::function<void()>& additional_ui = []() {});
+		virtual void UpdateOverlay(float delta_time, const std::function<void()>& additional_ui = []() {});
 
 		/**
 		 * @brief Handles cleaning up the application
@@ -82,13 +104,13 @@ namespace HT
 		/**
 		 * @brief Returns the drawer object for the sample
 		 */
-		//virtual Drawer* get_drawer();
+		virtual Drawer* GetDrawer();
 
 		const std::string& GetName() const;
 
 		void SetName(const std::string& name);
 
-		//DebugInfo& get_debug_info();
+		DebugInfo& GetDebugInfo();
 
 		inline bool ShouldClose() const
 		{
@@ -129,8 +151,6 @@ namespace HT
 
 		uint32_t last_frame_count{ 0 };
 
-		bool lock_simulation_speed{ false };
-
 		Window* window{ nullptr };
 
 	private:
@@ -142,8 +162,11 @@ namespace HT
 		//std::map<ShaderSourceLanguage, std::vector<std::pair<VkShaderStageFlagBits, std::string>>> available_shaders;
 
 		// The debug info of the app
-		//DebugInfo debug_info{};
+		DebugInfo debug_info{};
 
 		bool requested_close{ false };
 	};
+
+	// To be defined by the client
+	void GetAppInfo(Platform& platform);
 }   

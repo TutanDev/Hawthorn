@@ -40,82 +40,10 @@ namespace HT
 		temp_directory = context.TempDirectory();
 	}
 
-	//ExitCode Platform::initialize(const std::vector<Plugin*>& plugins)
-//	{
-//		auto sinks = get_platform_sinks();
-//
-//		auto logger = std::make_shared<spdlog::logger>("logger", sinks.begin(), sinks.end());
-//
-//#ifdef VKB_DEBUG
-//		logger->set_level(spdlog::level::debug);
-//#else
-//		logger->set_level(spdlog::level::info);
-//#endif
-//
-//		logger->set_pattern(LOGGER_FORMAT);
-//		spdlog::set_default_logger(logger);
-//
-//		LOGI("Logger initialized");
-//
-//		parser = std::make_unique<CLI11CommandParser>("vulkan_samples", "\n\tVulkan Samples\n\n\t\tA collection of samples to demonstrate the Vulkan best practice.\n", arguments);
-//
-//		// Process command line arguments
-//		if (!parser->parse(associate_plugins(plugins)))
-//		{
-//			return ExitCode::Help;
-//		}
-//
-//		// Subscribe plugins to requested hooks and store activated plugins
-//		for (auto* plugin : plugins)
-//		{
-//			if (plugin->activate_plugin(this, *parser.get()))
-//			{
-//				auto& plugin_hooks = plugin->get_hooks();
-//				for (auto hook : plugin_hooks)
-//				{
-//					auto it = hooks.find(hook);
-//
-//					if (it == hooks.end())
-//					{
-//						auto r = hooks.emplace(hook, std::vector<Plugin*>{});
-//
-//						if (r.second)
-//						{
-//							it = r.first;
-//						}
-//					}
-//
-//					it->second.emplace_back(plugin);
-//				}
-//
-//				active_plugins.emplace_back(plugin);
-//			}
-//		}
-//
-//		// Platform has been closed by a plugins initialization phase
-//		if (close_requested)
-//		{
-//			return ExitCode::Close;
-//		}
-//
-//		if (!app_requested())
-//		{
-//			return ExitCode::NoSample;
-//		}
-//
-//		create_window(window_properties);
-//
-//		if (!window)
-//		{
-//			LOGE("Window creation failed!");
-//			return ExitCode::FatalError;
-//		}
-//
-//		return ExitCode::Success;
-//	}
-
+	
 	ExitCode Platform::Initialize()
 	{
+		// Logger
 		auto sinks = GetPlatformSinks();
 
 		auto logger = std::make_shared<spdlog::logger>("logger", sinks.begin(), sinks.end());
@@ -131,6 +59,12 @@ namespace HT
 
 		LOGI("Logger initialized");
 
+		// Plugins
+		
+		// App
+		GetAppInfo(*this);
+
+		// Window
 		createWindow(window_properties);
 
 		if (!window)
@@ -146,71 +80,76 @@ namespace HT
 	{
 		if (!window->ShouldClose() && !close_requested)
 		{
-			//try
-			//{
-			//	// Load the requested app
-			//	//if (AppR())
-			//	//{
-			//		if (!StartApp())
-			//		{
-			//			LOGE("Failed to load requested application");
-			//			return ExitCode::FatalError;
-			//		}
+			try
+			{
+				// Load the requested app
+				if (NeedsToLoadApp())
+				{
+					if (!StartApp())
+					{
+						LOGE("Failed to load requested application");
+						return ExitCode::FatalError;
+					}
 
-			//		// Compensate for load times of the app by rendering the first frame pre-emptively
-			//		//timer.tick<Timer::Seconds>();
-			//		active_app->Update(0.01667f);
-			//	//}
+					// Compensate for load times of the app by rendering the first frame pre-emptively
+					timer.Tick<Timer::Seconds>();
+					active_app->Update(0.01667f);
+				}
 
-			//	Update();
+				Update();
 
-			//	if (active_app && active_app->ShouldClose())
-			//	{
-			//		std::string id = active_app->GetName();
-			//		on_app_close(id);
-			//		active_app->Finish();
-			//	}
+				if (active_app && active_app->ShouldClose())
+				{
+					std::string id = active_app->GetName();
+					on_app_close(id);
+					active_app->Finish();
+				}
 
-			//	window->ProcessEvents();
-			//}
-			//catch (std::exception& e)
-			//{
-			//	LOGE("Error Message: {}", e.what());
-			//	LOGE("Failed when running application {}", active_app->GetName());
+				window->ProcessEvents();
+			}
+			catch (std::exception& e)
+			{
+				LOGE("Error Message: {}", e.what());
+				LOGE("Failed when running application {}", active_app->GetName());
 
-			//	on_app_error(active_app->GetName());
+				on_app_error(active_app->GetName());
 
-			//	return ExitCode::FatalError;
-			//}
+				return ExitCode::FatalError;
+			}
 		}
 
 		return ExitCode::Success;
 	}
 
-	ExitCode Platform::MainLoop()
+	ExitCode Platform::MainLoop ()
 	{
 		while (!window->ShouldClose() && !close_requested)
 		{
 			try
 			{
-		//		// Load the requested app
-		//		if (!StartApp())
-		//		{
-		//			LOGE("Failed to load requested application");
-		//			return ExitCode::FatalError;
-		//		}
+				// Load the requested app
+				if (NeedsToLoadApp())
+				{
+					if (!StartApp())
+					{
+						LOGE("Failed to load requested application");
+						return ExitCode::FatalError;
+					}
 
-		//		// Compensate for load times of the app by rendering the first frame pre-emptively
-		//		active_app->Update(0.01667f);
+					// Compensate for load times of the app by rendering the first frame pre-emptively
+					timer.Tick<Timer::Seconds>();
+					active_app->Update(0.01667f);
+				}
+				
 
-		//		Update();
+				Update();
 
-		//		if (active_app && active_app->ShouldClose())
-		//		{
-		//			std::string id = active_app->GetName();
-		//			on_app_close(id);
-		//			active_app->Finish();
-		//		}
+				if (active_app && active_app->ShouldClose())
+				{
+					std::string id = active_app->GetName();
+					on_app_close(id);
+					active_app->Finish();
+				}
 
 				window->ProcessEvents();
 			}
@@ -230,11 +169,11 @@ namespace HT
 
 	void Platform::Update()
 	{
-		//auto delta_time = static_cast<float>(timer.tick<Timer::Seconds>());
+		auto delta_time = static_cast<float>(timer.Tick<Timer::Seconds>());
 
 		if (focused)
 		{
-			//on_update(delta_time);
+			on_update(delta_time);
 
 			//if (fixed_simulation_fps)
 			//{
@@ -246,34 +185,15 @@ namespace HT
 			//	});
 			//active_app->update(delta_time);
 
-			//if (auto* app = dynamic_cast<VulkanSample<vkb::BindingType::Cpp> *>(active_app.get()))
-			//{
-			//	if (app->has_render_context())
-			//	{
-			//		on_post_draw(reinterpret_cast<vkb::RenderContext&>(app->get_render_context()));
-			//	}
-			//}
-			//else if (auto* app = dynamic_cast<VulkanSample<vkb::BindingType::C> *>(active_app.get()))
-			//{
-			//	if (app->has_render_context())
-			//	{
-			//		on_post_draw(app->get_render_context());
-			//	}
-			//}
+			//if (app->has_render_context())
+				//	{
+				//		on_post_draw(app->get_render_context());
+				//	}
 		}
 	}
 
 	void Platform::Terminate(ExitCode code)
 	{
-		//if (code == ExitCode::Help)
-		//{
-		//	auto help = parser->help();
-		//	for (auto& line : help)
-		//	{
-		//		LOGI(line);
-		//	}
-		//}
-
 		if (code == ExitCode::NoSample)
 		{
 			LOGI("");
@@ -339,6 +259,11 @@ namespace HT
 		focused = _focused;
 	}
 
+	void Platform::SetApplicationInfo(const AppCreateInfo* app)
+	{
+		requested_app = app;
+	}
+
 	void Platform::SetWindowProperties(const Window::OptionalProperties& properties)
 	{
 		window_properties.title = properties.title.has_value() ? properties.title.value() : window_properties.title;
@@ -388,26 +313,21 @@ namespace HT
 		return sinks;
 	}
 
-	//bool Platform::app_requested()
-	//{
-	//	return requested_app != nullptr;
-	//}
-
-	//void Platform::request_application(const apps::AppInfo* app)
-	//{
-	//	requested_app = app;
-	//}
-
-	bool Platform::StartApp(const AppInfo* app)
+	bool Platform::NeedsToLoadApp()
 	{
-		auto* requested_app_info = app;
+		return requested_app != nullptr;
+	}
+
+	bool Platform::StartApp()
+	{
+		auto* requested_app_info = requested_app;
 		// Reset early incase error in preparation stage
-		//requested_app = nullptr;
+		requested_app = nullptr;
 
 		if (active_app)
 		{
-			//auto execution_time = timer.stop();
-			//LOGI("Closing App (Runtime: {:.1f})", execution_time);
+			auto execution_time = timer.Stop();
+			LOGI("Closing App (Runtime: {:.1f})", execution_time);
 
 			auto app_id = active_app->GetName();
 
@@ -491,7 +411,6 @@ namespace HT
 
 	void Platform::on_update(float delta_time)
 	{
-		LOGI("On Update");
 		//HOOK(Hook::OnUpdate, on_update(delta_time));
 	}
 
