@@ -10,3 +10,9 @@
 [submodule "Hawthorn/third_party/glm"]
 	path = Hawthorn/third_party/glm
 	url = https://github.com/g-truc/glm.git
+[submodule "Hawthorn/third_party/volk"]
+	path = Hawthorn/third_party/volk
+	url = git@github.com:TutanDev/volk.git
+[submodule "Hawthorn/third_party/fmt"]
+	path = Hawthorn/third_party/fmt
+	url = git@github.com:TutanDev/fmt.git
